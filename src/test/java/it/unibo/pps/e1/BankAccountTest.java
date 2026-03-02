@@ -1,43 +1,35 @@
 package it.unibo.pps.e1;
 
-import it.unibo.pps.e1.BankAccount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class BankAccountTest {
-
-    private BankAccount account;
+public abstract class BankAccountTest {
+    protected BankAccount bankAccount;
 
     @BeforeEach
-    void init(){
-        this.account = new BankAccount();
+    abstract void init();
+
+    @Test
+    public void testBalanceEmptyOnCreation() {
+        assertEquals(0, this.bankAccount.getBalance());
     }
 
     @Test
-    public void testInitiallyEmpty() {
-        assertEquals(0, this.account.getBalance());
+    public void testDeposit() {
+        int depositAmount = 100;
+        this.bankAccount.deposit(depositAmount);
+        assertEquals(depositAmount, this.bankAccount.getBalance());
     }
 
-    @Test
-    public void testCanDeposit() {
-        this.account.deposit(1000);
-        assertEquals(1000, this.account.getBalance());
-    }
-
-    @Test
-    public void testCanWithdraw() {
-        this.account.deposit(1000);
-        this.account.withdraw(200);
-        assertEquals(799, this.account.getBalance());
-    }
-
-    @Test
-    public void testCannotWithdrawMoreThanAvailable(){
-        this.account.deposit(1000);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(1200));
-    }
-
+    @ParameterizedTest
+    @CsvSource({
+        "100, 20, 80",
+        "50, 60, -10"
+    })
+    abstract public void testWithdraw(int depositAmount, int withdrawAmount, int expectedBalance);
 }

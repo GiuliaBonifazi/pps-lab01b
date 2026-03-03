@@ -1,7 +1,10 @@
-package it.unibo.pps.e2;
+package it.unibo.pps.e2.pieces;
 
+import it.unibo.pps.e2.Pair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,6 +20,8 @@ public abstract class ChessPieceTest {
         assertEquals(INITIAL_POSITION, chessPiece.getPosition());
     }
 
-    @Test
-    public abstract void testMove();
+    @ParameterizedTest
+    @CsvSource({
+    })
+    public abstract void testMove(int row, int col);
 }

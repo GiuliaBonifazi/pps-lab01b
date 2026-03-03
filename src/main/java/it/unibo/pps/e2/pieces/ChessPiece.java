@@ -1,4 +1,6 @@
-package it.unibo.pps.e2;
+package it.unibo.pps.e2.pieces;
+
+import it.unibo.pps.e2.Pair;
 
 public interface ChessPiece {
 

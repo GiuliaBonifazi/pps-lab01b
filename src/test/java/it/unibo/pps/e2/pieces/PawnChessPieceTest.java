@@ -1,7 +1,6 @@
 package it.unibo.pps.e2.pieces;
 
 import it.unibo.pps.e2.Pair;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,8 +15,7 @@ public class PawnChessPieceTest extends ChessPieceTest {
     @BeforeEach
     @Override
     public void init() {
-        ChessPiece baseChessPiece = new BaseChessPiece(INITIAL_POSITION);
-        chessPiece = new PawnChessPiece(baseChessPiece);
+        chessPiece = new PawnChessPiece(INITIAL_POSITION);
     }
 
     private static Stream<Arguments> provideLegalMovesFromInit() {

@@ -2,36 +2,26 @@ package it.unibo.pps.e2.pieces;
 
 import it.unibo.pps.e2.Pair;
 
-public class PawnChessPiece implements ChessPiece {
-    private final ChessPiece baseChessPiece;
-    private final int ACCEPTABLE_FIRST_OFFSET = 2;
-    private final int ACCEPTABLE_OFFSET = 1;
+public class PawnChessPiece extends ChessPiece {
     private boolean isFirstMove = true;
 
-    PawnChessPiece(ChessPiece baseChessPiece) {
-        this.baseChessPiece = baseChessPiece;
+    PawnChessPiece(Pair<Integer, Integer> position) {
+        super(position);
     }
 
     @Override
-    public void move(int row, int column) {
+    public boolean isValidMove(int row, int column) {
+        int acceptableOffset = 1;
         if (isFirstMove) {
             isFirstMove = false;
-            int currentX = baseChessPiece.getPosition().getX();
-            if ((row == currentX + ACCEPTABLE_FIRST_OFFSET ||
-                row == currentX + ACCEPTABLE_OFFSET)
-                && baseChessPiece.getPosition().getY() == column) {
-                baseChessPiece.move(row, column);
-            }
+            int currentX = this.getPosition().getX();
+            int acceptableFirstOffset = 2;
+            return (row == currentX + acceptableFirstOffset ||
+                row == currentX + acceptableOffset)
+                && this.getPosition().getY() == column;
         } else {
-            if (row == baseChessPiece.getPosition().getX() + ACCEPTABLE_OFFSET
-                && baseChessPiece.getPosition().getY() == column) {
-                baseChessPiece.move(row, column);
-            }
+            return row == this.getPosition().getX() + acceptableOffset
+                && this.getPosition().getY() == column;
         }
-    }
-
-    @Override
-    public Pair<Integer, Integer> getPosition() {
-        return baseChessPiece.getPosition();
     }
 }

@@ -2,24 +2,16 @@ package it.unibo.pps.e2.pieces;
 
 import it.unibo.pps.e2.Pair;
 
-public class KnightChessPiece implements ChessPiece {
-    private final ChessPiece baseChessPiece;
+public class KnightChessPiece extends ChessPiece {
 
-    KnightChessPiece(ChessPiece chessPiece) {
-        baseChessPiece = chessPiece;
+    KnightChessPiece(Pair<Integer, Integer> position) {
+        super(position);
     }
 
     @Override
-    public void move(int row, int column) {
-        int deltaRow = this.baseChessPiece.getPosition().getX() - row;
-        int deltaCol = this.baseChessPiece.getPosition().getY() - column;
-        if (Math.abs(deltaRow) + Math.abs(deltaCol) == 3) {
-            baseChessPiece.move(row, column);
-        }
-    }
-
-    @Override
-    public Pair<Integer, Integer> getPosition() {
-        return baseChessPiece.getPosition();
+    public boolean isValidMove(int row, int column) {
+        int deltaRow = this.getPosition().getX() - row;
+        int deltaCol = this.getPosition().getY() - column;
+        return Math.abs(deltaRow) + Math.abs(deltaCol) == 3;
     }
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public abstract class ChessPieceTest {
     protected static final Pair<Integer, Integer> INITIAL_POSITION = new Pair<>(0,0);
@@ -18,6 +19,11 @@ public abstract class ChessPieceTest {
     @Test
     public void testGetPos(){
         assertEquals(INITIAL_POSITION, chessPiece.getPosition());
+    }
+
+    @Test
+    public void testMoveNoMovement() {
+        assertFalse(chessPiece.move(INITIAL_POSITION.getX(), INITIAL_POSITION.getY()));
     }
 
     @ParameterizedTest

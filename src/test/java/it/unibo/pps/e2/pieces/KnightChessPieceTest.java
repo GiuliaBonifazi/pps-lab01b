@@ -2,14 +2,10 @@ package it.unibo.pps.e2.pieces;
 
 import it.unibo.pps.e2.Pair;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ArgumentsSource;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,8 +15,7 @@ public class KnightChessPieceTest extends ChessPieceTest {
     @BeforeEach
     @Override
     public void init() {
-        ChessPiece baseChessPiece = new BaseChessPiece(INITIAL_POSITION);
-        chessPiece = new KnightChessPiece(baseChessPiece);
+        chessPiece = new KnightChessPiece(INITIAL_POSITION);
     }
 
     private static Stream<Arguments> provideLegalMovesFromInit() {
